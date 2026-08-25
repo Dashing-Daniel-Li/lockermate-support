@@ -9,9 +9,13 @@
   --line-strong: #b9cdec;
   --text: #0e1b33;
   --dim: #42597e;
+  /* LM.ink3. Kept for parity with the app, but not used for text here: on
+     these backgrounds it is 3.6-3.9:1, under the 4.5:1 WCAG AA needs. */
   --faint: #6b82a8;
   --accent: #116ad5;
   --accent-2: #3d9bf5;
+  /* LM.accentText — the app's accent restated at text contrast. */
+  --accent-text: #0b4fa8;
   --tint: #e8f1fe;
   --shadow: rgba(14, 58, 122, 0.10);
   --shadow-lift: rgba(14, 58, 122, 0.16);
@@ -37,15 +41,11 @@
     --faint: #8398ba;
     --accent: #4a9bf0;
     --accent-2: #8fc4ff;
+    --accent-text: #8fc4ff;
     --tint: #1b2942;
     --shadow: rgba(0, 0, 0, 0.35);
     --shadow-lift: rgba(0, 0, 0, 0.5);
   }
-}
-
-/* Allow the accordion to transition to its natural height. */
-@supports (interpolate-size: allow-keywords) {
-  :root { interpolate-size: allow-keywords; }
 }
 
 * { box-sizing: border-box; }
@@ -68,8 +68,16 @@ body {
 .wrap { max-width: 680px; margin: 0 auto; }
 
 /* ---------- Reading progress -------------------------------------------
-   Scroll-driven, so it runs off the main thread with no scroll listener.
-   Hidden entirely where the feature isn't supported. */
+   Scroll-driven where the engine has scroll timelines — Chrome and Safari
+   both do — so it runs off the main thread with no scroll listener at all.
+   Firefox has none yet; there site.js drives the identical transform from a
+   passive, rAF-throttled listener instead.
+
+   The animation is declared inside @supports on purpose. Left unguarded, an
+   engine without scroll timelines ignores `animation-timeline`, falls back to
+   the document timeline at the default 0s duration, and `both` fill paints a
+   permanently full bar. Guarded, it simply stays at scaleX(0) and paints
+   nothing until JS takes over. */
 .progress {
   position: fixed;
   inset: 0 0 auto 0;
@@ -78,12 +86,16 @@ body {
   transform-origin: 0 50%;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   z-index: 20;
-  animation: progress-grow linear both;
-  animation-timeline: scroll(root block);
 }
-@keyframes progress-grow { to { transform: scaleX(1); } }
-@supports not (animation-timeline: scroll(root block)) {
-  .progress { display: none; }
+@supports (animation-timeline: scroll(root block)) {
+  .progress {
+    animation: progress-grow linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes progress-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 /* ---------- Header ------------------------------------------------------ */
@@ -119,8 +131,10 @@ a {
   transition: border-bottom-color var(--dur-hover) ease,
               color var(--dur-hover) ease;
 }
+/* Hover deepens the link in light mode and lifts it in dark, rather than
+   washing it out: --accent-2 is a fill tint and only reaches 2.9:1 on white. */
 @media (hover: hover) and (pointer: fine) {
-  a:hover { border-bottom-color: var(--accent); color: var(--accent-2); }
+  a:hover { border-bottom-color: var(--accent); color: var(--accent-text); }
 }
 a:focus-visible {
   outline: 2px solid var(--accent);
@@ -143,7 +157,7 @@ a:focus-visible {
 
 footer {
   margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
-  color: var(--faint); font-size: 14px; text-align: center;
+  color: var(--dim); font-size: 14px; text-align: center;
 }
 
 code {
@@ -198,17 +212,32 @@ code {
 }
 .faq[open] summary::after { transform: translateY(-25%) rotate(225deg); }
 
-.faq-body { padding: 0 22px 18px; }
+/* The panel is a one-row grid animated 0fr -> 1fr. That interpolates in
+   Chrome, Safari and Firefox alike. The obvious alternative — transitioning
+   ::details-content's block-size to `auto` — additionally needs
+   `interpolate-size: allow-keywords`, which Safari and Firefox do not
+   support, so there the accordion silently snapped open with no transition.
+
+   The row is minmax(0, Nfr) rather than a bare Nfr on purpose. A bare `0fr`
+   means minmax(auto, 0fr), and that auto floor is the item's own padding —
+   measured at 18px in both Chrome and Safari, so every closed question kept a
+   visible strip. An explicit 0 minimum removes the floor; .faq-panel then
+   clips the padding that overflows it. */
+.faq-panel {
+  display: grid;
+  grid-template-rows: minmax(0, 0fr);
+  overflow: hidden;
+  transition: grid-template-rows var(--dur-accordion) var(--ease-out);
+}
+.faq[open] > .faq-panel { grid-template-rows: minmax(0, 1fr); }
+/* site.js sets these while it drives a transition, so the row has a value to
+   travel from. Same specificity as the [open] rule above, so order decides. */
+.faq.is-collapsed > .faq-panel { grid-template-rows: minmax(0, 0fr); }
+.faq.is-expanded > .faq-panel { grid-template-rows: minmax(0, 1fr); }
+
+.faq-body { min-height: 0; padding: 0 22px 18px; }
 .faq-body p { margin: 0 0 12px; }
 .faq-body p:last-child { margin-bottom: 0; }
-
-.faq::details-content {
-  block-size: 0;
-  overflow: hidden;
-  transition: block-size var(--dur-accordion) var(--ease-out),
-              content-visibility var(--dur-accordion) allow-discrete;
-}
-.faq[open]::details-content { block-size: auto; }
 
 /* ---------- Table of contents ------------------------------------------ */
 .toc {
@@ -222,7 +251,7 @@ code {
 .toc h2 {
   border: 0; padding: 0; margin: 0 0 10px;
   font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase;
-  color: var(--faint);
+  color: var(--dim);
 }
 .toc ol { margin: 0; padding-left: 20px; }
 .toc li { margin-bottom: 5px; }
@@ -255,7 +284,7 @@ code {
   /* Keep the fade — it still signals arrival — but drop the movement. */
   .js .reveal { transform: none; transition: opacity 200ms ease; }
   .faq summary::after,
-  .faq::details-content { transition: none; }
+  .faq-panel { transition: none; }
   .progress { display: none; }
 }
 
