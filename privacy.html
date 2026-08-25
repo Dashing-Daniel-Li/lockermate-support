@@ -5,22 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Locker Mate — Privacy Policy</title>
 <meta name="description" content="Privacy policy for Locker Mate. Your locker numbers and session history stay on your iPhone. Ads are served by Google AdMob.">
+<meta name="theme-color" content="#116ad5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a1120" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="mark.png">
 <link rel="stylesheet" href="style.css">
+<!-- Set before first paint so revealed content never flashes. -->
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 <div class="wrap">
 
 <header>
-  <img src="mark.png" alt="Locker Mate app icon">
+  <img src="mark.png" alt="Locker Mate app icon" width="108" height="108">
   <h1>Privacy Policy</h1>
   <p class="tagline">Locker Mate for iPhone</p>
   <p class="nav"><a href="index.html">Support</a></p>
 </header>
 
-<h2>The short version</h2>
+<nav class="toc reveal" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#short">The short version</a></li>
+    <li><a href="#stored">What Locker Mate stores on your device</a></li>
+    <li><a href="#advertising">Advertising</a></li>
+    <li><a href="#removing-ads">Removing ads</a></li>
+    <li><a href="#permissions">Permissions the app never asks for</a></li>
+    <li><a href="#analytics">Analytics</a></li>
+    <li><a href="#children">Children</a></li>
+    <li><a href="#rights">Your rights</a></li>
+    <li><a href="#changes">Changes to this policy</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</nav>
 
-<div class="card">
+<h2 id="short" class="reveal">The short version</h2>
+
+<div class="card reveal">
 <p><strong>Your locker numbers and session history never leave your iPhone.</strong>
 There are no accounts, no servers of ours, and no analytics. Locker Mate does
 not upload anything you record in it.</p>
@@ -31,11 +52,11 @@ are asked for permission first, you can say no, and you can remove ads
 altogether with a one-time purchase.</p>
 </div>
 
-<h2>What Locker Mate stores on your device</h2>
+<h2 id="stored" class="reveal">What Locker Mate stores on your device</h2>
 
-<p>The app saves what it needs to do its job, and nothing else:</p>
+<p class="reveal">The app saves what it needs to do its job, and nothing else:</p>
 
-<ul>
+<ul class="reveal">
   <li>the locker number of the session currently running, and when it started</li>
   <li>your session history — locker number, start time and end time for each</li>
   <li>your settings: session goal, auto-end time, theme, and whether the
@@ -45,31 +66,31 @@ altogether with a one-time purchase.</p>
   <li>whether you have bought Remove Ads</li>
 </ul>
 
-<p>All of it is written to a private container on your iPhone, shared between
-the app and its widgets so the Lock Screen and Home Screen can show your timer.
-It is not synced to iCloud, not backed up to any server of ours, and never
-transmitted. Nobody — including the developer — can see it.</p>
+<p class="reveal">All of it is written to a private container on your iPhone,
+shared between the app and its widgets so the Lock Screen and Home Screen can
+show your timer. It is not synced to iCloud, not backed up to any server of
+ours, and never transmitted. Nobody — including the developer — can see it.</p>
 
-<p>You can delete any individual session from the Activity tab. Deleting the app
-removes everything at once. There is no copy anywhere else to request the
-deletion of.</p>
+<p class="reveal">You can delete any individual session from the Activity tab.
+Deleting the app removes everything at once. There is no copy anywhere else to
+request the deletion of.</p>
 
-<h2>Advertising</h2>
+<h2 id="advertising" class="reveal">Advertising</h2>
 
-<p>Locker Mate is free and is paid for by a small banner advertisement. That
-banner is served by <strong>Google AdMob</strong>, which is a third party
-operating under its own privacy policy.</p>
+<p class="reveal">Locker Mate is free and is paid for by a small banner
+advertisement. That banner is served by <strong>Google AdMob</strong>, which is a
+third party operating under its own privacy policy.</p>
 
-<p>To serve ads, Google may collect and process information such as your
-device's advertising identifier (IDFA), IP address, device type and operating
-system version, and general information about how ads performed. The developer
-of Locker Mate does not receive any of this, and receives no information that
-identifies you — only anonymous, aggregated earnings figures.</p>
+<p class="reveal">To serve ads, Google may collect and process information such
+as your device's advertising identifier (IDFA), IP address, device type and
+operating system version, and general information about how ads performed. The
+developer of Locker Mate does not receive any of this, and receives no
+information that identifies you — only anonymous, aggregated earnings figures.</p>
 
-<p>Two separate permissions govern this, and you control both:</p>
+<p class="reveal">Two separate permissions govern this, and you control both:</p>
 
-<h3>App Tracking Transparency</h3>
-<div class="card">
+<h3 class="reveal">App Tracking Transparency</h3>
+<div class="card reveal">
 <p>On first launch iOS asks whether Locker Mate may track you across apps and
 websites. That question is Apple's, and your answer is binding on the app.</p>
 <p><strong>If you decline</strong>, the advertising identifier is not available,
@@ -79,8 +100,8 @@ than from your interests. The app works exactly the same either way.</p>
 <em>Settings&nbsp;→&nbsp;Privacy&nbsp;&amp;&nbsp;Security&nbsp;→&nbsp;Tracking</em>.</p>
 </div>
 
-<h3>Consent, for the UK and Europe</h3>
-<div class="card">
+<h3 class="reveal">Consent, for the UK and Europe</h3>
+<div class="card reveal">
 <p>If you are in the UK or the European Economic Area, you are also shown
 Google's consent form before any ad loads, as required by UK and EU data
 protection law. Your choice there determines whether Google may use your data
@@ -90,69 +111,71 @@ for personalised advertising.</p>
 form applies to you.</p>
 </div>
 
-<p>Google's own documentation explains what it collects and why:</p>
+<p class="reveal">Google's own documentation explains what it collects and why:</p>
 
-<ul>
+<ul class="reveal">
   <li><a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a></li>
   <li><a href="https://policies.google.com/technologies/partner-sites" rel="noopener">How Google uses information from sites or apps that use our services</a></li>
 </ul>
 
-<h2>Removing ads</h2>
+<h2 id="removing-ads" class="reveal">Removing ads</h2>
 
-<p>Remove Ads is a one-time in-app purchase. Once bought, the banner is gone and
-no further ad requests are made from the app.</p>
+<p class="reveal">Remove Ads is a one-time in-app purchase. Once bought, the
+banner is gone and no further ad requests are made from the app.</p>
 
-<p>The purchase itself is handled entirely by Apple through the App Store.
-Locker Mate never sees your name, payment details or billing address — only
-whether the purchase exists, so it knows to hide the banner. Restoring it on
-another device asks Apple, not us.</p>
+<p class="reveal">The purchase itself is handled entirely by Apple through the
+App Store. Locker Mate never sees your name, payment details or billing address
+— only whether the purchase exists, so it knows to hide the banner. Restoring it
+on another device asks Apple, not us.</p>
 
-<h2>Permissions the app never asks for</h2>
+<h2 id="permissions" class="reveal">Permissions the app never asks for</h2>
 
-<p>Locker Mate does not request and cannot access your location, contacts,
-photos, microphone, camera, calendar, or any health or fitness data. It is a
-timer with a number pad; none of that is needed.</p>
+<p class="reveal">Locker Mate does not request and cannot access your location,
+contacts, photos, microphone, camera, calendar, or any health or fitness data.
+It is a timer with a number pad; none of that is needed.</p>
 
-<h2>Analytics</h2>
+<h2 id="analytics" class="reveal">Analytics</h2>
 
-<p>The app contains no analytics or crash-reporting library of its own, and the
-developer runs no server that it talks to.</p>
+<p class="reveal">The app contains no analytics or crash-reporting library of its
+own, and the developer runs no server that it talks to.</p>
 
-<p>Apple separately provides the developer with anonymous, aggregated App Store
-statistics — download counts, and crash reports if you have opted into sharing
-them in <em>Settings&nbsp;→&nbsp;Privacy&nbsp;&amp;&nbsp;Security&nbsp;→&nbsp;Analytics&nbsp;&amp;
+<p class="reveal">Apple separately provides the developer with anonymous,
+aggregated App Store statistics — download counts, and crash reports if you have
+opted into sharing them in
+<em>Settings&nbsp;→&nbsp;Privacy&nbsp;&amp;&nbsp;Security&nbsp;→&nbsp;Analytics&nbsp;&amp;
 Improvements</em>. That is a feature of the App Store rather than of this app,
 it is controlled by your own iOS settings, and it identifies nobody.</p>
 
-<h2>Children</h2>
+<h2 id="children" class="reveal">Children</h2>
 
-<p>Locker Mate is a general-audience app and is not directed at children under
-13. Because it displays advertising, it is not suitable for a child-directed
-audience and it is not part of any children's programme or category.</p>
+<p class="reveal">Locker Mate is a general-audience app and is not directed at
+children under 13. Because it displays advertising, it is not suitable for a
+child-directed audience and it is not part of any children's programme or
+category.</p>
 
-<h2>Your rights</h2>
+<h2 id="rights" class="reveal">Your rights</h2>
 
-<p>Under UK and EU data protection law you have rights of access, correction,
-erasure and objection over personal data held about you.</p>
+<p class="reveal">Under UK and EU data protection law you have rights of access,
+correction, erasure and objection over personal data held about you.</p>
 
-<p>For data held by <strong>Locker Mate</strong>, those rights are satisfied
-directly on your device: everything the app stores is visible in the app, can be
-edited or deleted there, and is destroyed when you delete the app. The developer
-holds no copy and so has nothing to disclose or erase.</p>
+<p class="reveal">For data held by <strong>Locker Mate</strong>, those rights are
+satisfied directly on your device: everything the app stores is visible in the
+app, can be edited or deleted there, and is destroyed when you delete the app.
+The developer holds no copy and so has nothing to disclose or erase.</p>
 
-<p>For data held by <strong>Google</strong> as a result of advertising, those
-rights are exercised with Google, using the links above and the consent controls
-described in this policy.</p>
+<p class="reveal">For data held by <strong>Google</strong> as a result of
+advertising, those rights are exercised with Google, using the links above and
+the consent controls described in this policy.</p>
 
-<h2>Changes to this policy</h2>
+<h2 id="changes" class="reveal">Changes to this policy</h2>
 
-<p>If this policy changes it will be updated on this page and the date below will
-change with it. If a change ever materially affects how your information is
-handled, it will be described here rather than quietly amended.</p>
+<p class="reveal">If this policy changes it will be updated on this page and the
+date below will change with it. If a change ever materially affects how your
+information is handled, it will be described here rather than quietly amended.</p>
 
-<h2>Contact</h2>
+<h2 id="contact" class="reveal">Contact</h2>
 
-<p>Questions about privacy, or anything else:
+<p class="reveal">Questions about privacy, or anything else:
 <a href="mailto:daniel.li.work@gmail.com">daniel.li.work@gmail.com</a></p>
 
 <footer>
@@ -161,5 +184,6 @@ handled, it will be described here rather than quietly amended.</p>
 </footer>
 
 </div>
+<script src="site.js" defer></script>
 </body>
 </html>
